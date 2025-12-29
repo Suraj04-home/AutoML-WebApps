@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AutoML Web App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+
+    <h1 class="mb-3">🚀 AutoML Web Application</h1>
+    <p class="text-muted">
+        Upload your dataset, explore it automatically, train multiple ML models,
+        and get reusable Python code for the best model.
+    </p>
+
+    <!-- Disclaimer -->
+    <div style="
+        border: 1px solid #f5c6cb;
+        background-color: #fff3cd;
+        padding: 12px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        color: #856404;
+    ">
+        <strong>⚠️ Important Note:</strong><br>
+        This application works best with <b>clean and meaningful data</b>.<br>
+        Please remove unnecessary columns such as <b>IDs, names, URLs, titles, or text descriptions</b>
+        (for example: <i>id, name, title, link, summary</i>) before training models.<br>
+        <b>Better data quality leads to better model performance.</b>
+    </div>
+
+    <!-- Upload Card -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">1️⃣ Upload Dataset</h5>
+
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" class="form-control" required>
+                <button class="btn btn-primary mt-3">Upload Dataset</button>
+            </form>
+        </div>
+    </div>
+
+    {% if success %}
+    <!-- Dataset Summary -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">📄 Dataset Summary</h5>
+            <p><b>Rows:</b> {{ rows }} | <b>Columns:</b> {{ cols }}</p>
+
+            <div class="row">
+                {% for col in columns %}
+                <div class="col-md-3 text-muted">• {{ col }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex gap-3">
+        <a href="/eda" class="btn btn-outline-secondary">📊 Generate EDA</a>
+        <a href="/preprocess" class="btn btn-outline-secondary">⚙️ Preprocess</a>
+        <a href="/train_models" class="btn btn-outline-secondary">🚀 Train Models</a>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

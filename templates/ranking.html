@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Model Ranking</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>  
+
+<h2>🏆 Model Ranking ({{ problem_type | capitalize }})</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Rank</th>
+        <th>Model</th>
+        <th>Accuracy (%)</th>
+        <th>R² Score</th>
+        <th>RMSE</th>
+    </tr>
+
+    {% for row in ranked_models %}
+    <tr {% if row.model == best_model %} style="background-color:#d4edda;" {% endif %}>
+        <td>{{ loop.index }}</td>
+        <td><b>{{ row.model }}</b></td>
+        <td>{{ row.accuracy }}%</td>
+        <td>{{ row.r2_score }}</td>
+        <td>{{ row.rmse }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<h3>✅ Best Model Selected:</h3>
+<p>
+    <b>{{ best_model }}</b> performed best based on evaluation metrics.
+</p>
+
+<br>
+
+<a href="/generate_code">
+    <button>📦 Generate Best Model Code</button>
+</a>
+
+<br><br>
+
+<a href="/">
+    <button>🏠 Back to Home</button>
+</a>
+
+<hr>
+<a href="/"><button>🏠 Home</button></a>
+<a href="javascript:history.back()"><button>⬅️ Back</button></a>
+
+</body>
+</html>

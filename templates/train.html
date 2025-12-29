@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Model Training Results</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<h2>🚀 Model Training Results ({{ problem_type | capitalize }})</h2>
+<p>Multiple models are trained and evaluated using the same data.</p>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Model</th>
+        {% if problem_type == "classification" %}
+            <th>Accuracy</th>
+            <th>F1 Score</th>
+        {% else %}
+            <th>Accuracy (%)</th>
+            <th>R² Score</th>
+            <th>RMSE</th>
+        {% endif %}
+
+    </tr>
+
+    {% for row in results %}
+    <tr>
+        <td>{{ row.model }}</td>
+
+        {% if problem_type == "classification" %}
+            <td>{{ row.accuracy }}</td>
+            <td>{{ row.f1_score }}</td>
+        {% else %}
+            <td>{{ row.accuracy }}%</td>
+            <td>{{ row.r2_score }}</td>
+            <td>{{ row.rmse }}</td>
+        {% endif %}
+
+    </tr>
+    {% endfor %}
+</table>
+
+<br><br>
+
+<a href="/">
+    <button>🏠 Back to Home</button>
+</a>
+
+<br><br>
+<a href="/rank_models">
+    <button>🏆 Rank Models</button>
+</a>
+
+<hr>
+<a href="/"><button>🏠 Home</button></a>
+<a href="javascript:history.back()"><button>⬅️ Back</button></a>
+
+<p style="color:green;">
+✅ Model training completed. Review performance and rank models.
+</p>
+
+</body>
+</html>
