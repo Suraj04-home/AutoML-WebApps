@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🚀 AutoML Web Application
 
 An end-to-end AutoML web application that automatically performs:
@@ -29,6 +28,3 @@ git clone <your-repo-url>
 cd AutoML-WebApp
 pip install -r requirements.txt
 python app.py
-=======
-# AutoML-WebApp
->>>>>>> e5ba6c5e85866f309964fe91dcf5730a0e2c4d10
